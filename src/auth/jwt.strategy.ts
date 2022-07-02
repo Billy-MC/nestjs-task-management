@@ -1,3 +1,4 @@
+import { ConfigService } from '@nestjs/config';
 import { IJwtPayload } from './interface/jwt-payload.interface';
 import { Repository } from 'typeorm';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -10,10 +11,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor(
 		@InjectRepository(User)
-		private usersRepository: Repository<User>
+		private usersRepository: Repository<User>,
+		private configService: ConfigService
 	) {
 		super({
-			secretOrKey: 'ILOVEIZ*ONE&MIYAWAKI_SAKURA',
+			secretOrKey: configService.get('JWT_SECRET'),
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 		});
 	}
