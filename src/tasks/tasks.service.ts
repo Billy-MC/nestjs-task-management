@@ -10,7 +10,7 @@ import { ETaskStatus } from './interface/tasks.interface';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './task.entity';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 
 @Injectable()
 export class TasksService {
